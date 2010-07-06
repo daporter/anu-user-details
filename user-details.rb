@@ -9,11 +9,8 @@ end
 
 get "/search" do
   if params[:email] or params[:uni_id]
-    if params[:email]
-      filter = Net::LDAP::Filter.eq("mail", params[:email])
-    elsif params[:uni_id]
-      filter = Net::LDAP::Filter.eq("uid", params[:uni_id])
-    end
+    filter = Net::LDAP::Filter.eq("mail", params[:email])  if params[:email]
+    filter = Net::LDAP::Filter.eq("uid", params[:uni_id])  if params[:uni_id]
 
     ldap = Net::LDAP.new(:host       => "ldap.anu.edu.au",
                          :port       => 636,
@@ -36,6 +33,8 @@ __END__
   %head
     %title Lookup User
   %body
+    %h2 Lookup user details from ANU LDAP
+
     #search
       %form{:action => "/search", :method => "GET"}
         %label{:for => "email", :style => "padding-right: 5px;"} Search by email:
