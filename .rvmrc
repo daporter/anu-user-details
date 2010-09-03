@@ -1,1 +1,5 @@
-rvm default@user_details
+if [[ -n "$rvm_environments_path" && -s "$rvm_environments_path/ruby-1.9.2-p0@user_details" ]] ; then
+  \. "$rvm_environments_path/ruby-1.9.2-p0@user_details"
+else
+  rvm --create  "ruby-1.9.2-p0@user_details"
+fi
