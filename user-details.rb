@@ -6,6 +6,7 @@ require "haml"
 require "anu-ldap"
 
 set :run, true
+enable :inline_templates
 
 get "/" do
   haml :search
