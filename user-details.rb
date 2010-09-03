@@ -5,6 +5,8 @@ require "sinatra"
 require "haml"
 require "anu-ldap"
 
+set :run, true
+
 get "/" do
   haml :search
 end
